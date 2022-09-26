@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:my_od/connection.dart';
+import 'package:my_od/screen/home_screen.dart';
+import 'package:my_od/screen/login_screen.dart';
+import 'package:my_od/screen/register_screen.dart';
+
+void main() async {
+  runApp(const MyApp());
+  Connection();
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const HomeScreen(),
+      routes: {
+        '/home': (context) => const HomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
+      },
+    );
+  }
+}
