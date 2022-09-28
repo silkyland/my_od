@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_od/connection.dart';
+import 'package:my_od/screen/admin/admin_screen.dart';
+import 'package:my_od/screen/admin/manage_post_screen.dart';
 import 'package:my_od/screen/home_screen.dart';
 import 'package:my_od/screen/login_screen.dart';
 import 'package:my_od/screen/register_screen.dart';
@@ -25,6 +27,8 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
+        '/admin': (context) => const AdminScreen(),
+        '/admin/managePost': (context) => const ManagePostScreen(),
       },
     );
   }

@@ -21,8 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _fetchPosts() async {
     var conn = await Connection.getConnection();
-    var results =
-        await conn.query('SELECT * FROM posts ORDER BY id DESC LIMIT 10');
+    var results = await conn.query(
+      """
+          SELECT * FROM posts INNER JOIN users ON posts.user_id = users.user_id
+      """,
+    );
     print(results);
 
     // loop through the results

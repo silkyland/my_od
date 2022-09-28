@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:mysql1/mysql1.dart';
 
 var mysqlSettings = new ConnectionSettings(
-  host: '10.0.2.2',
+  host: Platform.isIOS ? 'localhost' : '10.0.2.2',
   port: 3306,
   user: 'root',
   password: '1234',
@@ -22,6 +24,7 @@ class Connection {
     var conn = await getConnection();
     var result = await conn.query('CREATE TABLE IF NOT EXISTS users ('
         'user_id INT NOT NULL AUTO_INCREMENT,'
+        'username VARCHAR(255) NOT NULL UNIQUE,'
         'name VARCHAR(255) NOT NULL,'
         'email VARCHAR(255) NOT NULL,'
         'role VARCHAR(255) NOT NULL DEFAULT "user",'
