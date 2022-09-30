@@ -25,23 +25,41 @@ class _LoginScreenState extends State<LoginScreen> {
         [_usernameController.text, _passwordController.text]);
 
     if (result.length > 0) {
-      // ต้องติดตั้ง shared_preferences ใน pubspec.yaml ก่อน เพื่อบันทึกข้อมูลการ login ไว้
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var data = [];
       for (var row in result) {
         data.add(row.fields);
       }
-      await prefs.setString('loginData', data[0].toString());
+      await prefs.setString('user_id', data[0]['user_id'].toString());
+      await prefs.setString('username', data[0]['username'].toString());
+      await prefs.setString('name', data[0]['name'].toString());
+      await prefs.setString('role', data[0]['role'].toString());
+
       if (data[0]['role'] == 'admin') {
-        Navigator.pushNamed(context, '/admin');
+        Navigator.pushReplacementNamed(context, '/admin');
       } else {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/home');
       }
     } else {
       setState(() {
         hasError = true;
         errorMessage = 'Invalid username or password';
       });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLogin();
+  }
+
+  Future<void> _checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var loginData = prefs.getString('user_id');
+    var role = prefs.getString('role');
+    if (loginData != null && role == 'admin') {
+      Navigator.pushReplacementNamed(context, '/admin');
     }
   }
 

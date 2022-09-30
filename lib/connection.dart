@@ -35,13 +35,13 @@ class Connection {
         ')');
 
     var postResult = await conn.query('CREATE TABLE IF NOT EXISTS posts ('
-        'id INT NOT NULL AUTO_INCREMENT,'
+        'post_id INT NOT NULL AUTO_INCREMENT,'
         'user_id INT NOT NULL,'
         'title VARCHAR(255) NOT NULL,'
         'content TEXT NOT NULL,'
         'created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,'
         'updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,'
-        'PRIMARY KEY (id)'
+        'PRIMARY KEY (post_id)'
         ')');
 
     print(result);

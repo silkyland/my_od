@@ -48,7 +48,11 @@ class _AdminScreenState extends State<AdminScreen> {
                     onPressed: () async {
                       var sharedPref = await SharedPreferences.getInstance();
                       sharedPref.clear();
-                      Navigator.pushNamed(context, '/');
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/',
+                        (route) => false,
+                      );
                     },
                     child: const Text('ออกจากระบบ'),
                   ),
